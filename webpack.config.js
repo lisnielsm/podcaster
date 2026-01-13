@@ -6,6 +6,7 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, "dist"),
     filename: "bundle.js",
+    publicPath: "/",
     clean: true,
   },
   mode: "development",
@@ -37,10 +38,12 @@ module.exports = {
     static: {
       directory: path.join(__dirname, "public"),
     },
-    port: 3000,
+    host: "localhost",
+    port: 4500,
     open: true,
     hot: true,
     liveReload: true,
+    historyApiFallback: true,
     watchFiles: ["src/**/*", "public/**/*"],
   },
 };

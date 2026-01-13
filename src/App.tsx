@@ -1,15 +1,22 @@
 import React from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Header from "./shared/components/layout/Header";
+import PodcastListPage from "./features/podcast-list/pages/PodcastListPage";
 import "./App.css";
 
 const App: React.FC = () => {
   return (
-    <div className="app-container">
-      <h1>Hello from React with Webpack and TypeScript!</h1>
-      <p>
-        This is my React project, manually configured with native CSS and
-        TypeScript.
-      </p>
-    </div>
+    <Router>
+      <div className="app">
+        <Header />
+        <main className="app-main">
+          <Routes>
+            <Route path="/" element={<PodcastListPage />} />
+            {/* We will add more routes later */}
+          </Routes>
+        </main>
+      </div>
+    </Router>
   );
 };
 
