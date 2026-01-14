@@ -43,6 +43,12 @@
   color: #666;
   font-style: italic;
   margin: 0;
+  text-decoration: none;
+  display: block;
+}
+
+.podcast-sidebar-artist:hover {
+  color: #007bff;
 }
 
 .podcast-sidebar-description {

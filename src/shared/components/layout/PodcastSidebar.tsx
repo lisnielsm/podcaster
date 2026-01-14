@@ -27,7 +27,9 @@ const PodcastSidebar: React.FC<PodcastSidebarProps> = ({
           <Link to={`/podcast/${id}`} className="podcast-sidebar-title">
             {name}
           </Link>
-          <p className="podcast-sidebar-artist">by {artist}</p>
+          <Link to={`/podcast/${id}`} className="podcast-sidebar-artist">
+            by {artist}
+          </Link>
         </div>
         {description && (
           <div className="podcast-sidebar-description">
