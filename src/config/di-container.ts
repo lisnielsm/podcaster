@@ -2,6 +2,7 @@ import { PodcastApiAdapter } from "../infrastructure/api/PodcastApiAdapter";
 import { LocalStorageAdapter } from "../infrastructure/storage/LocalStorageAdapter";
 import { HttpClient } from "../infrastructure/http/HttpClient";
 import { GetTopPodcastsUseCase } from "../core/domain/services/GetTopPodcastsUseCase";
+import { GetPodcastDetailUseCase } from "../core/domain/services/GetPodcastDetailUseCase";
 
 // Create instances
 const httpClient = new HttpClient();
@@ -14,8 +15,14 @@ export const getTopPodcastsUseCase = new GetTopPodcastsUseCase(
   storageRepository
 );
 
+export const getPodcastDetailUseCase = new GetPodcastDetailUseCase(
+  podcastRepository,
+  storageRepository
+);
+
 // Export for use in the application
 export const diContainer = {
   getTopPodcastsUseCase,
+  getPodcastDetailUseCase,
   // Add more use cases here
 };

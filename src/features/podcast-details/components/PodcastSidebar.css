@@ -1,0 +1,78 @@
+.podcast-sidebar {
+  width: 300px;
+  flex-shrink: 0;
+}
+
+.podcast-sidebar-card {
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  padding: 1.5rem;
+  position: sticky;
+  top: 80px;
+}
+
+.podcast-sidebar-image {
+  width: 100%;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+  display: block;
+}
+
+.podcast-sidebar-content {
+  border-top: 1px solid #e0e0e0;
+  padding-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+.podcast-sidebar-title {
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: #333;
+  text-decoration: none;
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+.podcast-sidebar-title:hover {
+  color: #007bff;
+}
+
+.podcast-sidebar-artist {
+  font-size: 0.9rem;
+  color: #666;
+  font-style: italic;
+  margin: 0;
+}
+
+.podcast-sidebar-description {
+  border-top: 1px solid #e0e0e0;
+  padding-top: 1rem;
+}
+
+.podcast-sidebar-description h3 {
+  font-size: 0.9rem;
+  font-weight: bold;
+  color: #333;
+  margin: 0 0 0.5rem 0;
+}
+
+.podcast-sidebar-description p {
+  font-size: 0.85rem;
+  color: #666;
+  line-height: 1.5;
+  margin: 0;
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+@media (max-width: 768px) {
+  .podcast-sidebar {
+    width: 100%;
+    margin-bottom: 2rem;
+  }
+
+  .podcast-sidebar-card {
+    position: static;
+  }
+}
