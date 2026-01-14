@@ -2,8 +2,9 @@ import React from "react";
 import { useParams } from "react-router-dom";
 import { usePodcastDetail } from "../hooks/usePodcastDetail";
 import { diContainer } from "../../../config/di-container";
-import PodcastSidebar from "../components/PodcastSidebar";
+import PodcastSidebar from "../../../shared/components/layout/PodcastSidebar";
 import EpisodeList from "../components/EpisodeList";
+import LoadingSpinner from "../../../shared/components/ui/LoadingSpinner";
 import "./PodcastDetailPage.css";
 
 const PodcastDetailPage: React.FC = () => {
@@ -15,9 +16,7 @@ const PodcastDetailPage: React.FC = () => {
   );
 
   if (loading) {
-    return (
-      <div className="podcast-detail-loading">Loading podcast details...</div>
-    );
+    return <LoadingSpinner />;
   }
 
   if (error || !podcastDetail) {

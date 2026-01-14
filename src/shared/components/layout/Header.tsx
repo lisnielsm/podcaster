@@ -1,12 +1,23 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { Link, useLocation } from "react-router-dom";
 import "./Header.css";
 
-interface HeaderProps {
-  isLoading?: boolean;
-}
+const Header: React.FC = () => {
+  const [isLoading, setIsLoading] = useState(false);
+  const location = useLocation();
 
-const Header: React.FC<HeaderProps> = ({ isLoading = false }) => {
+  useEffect(() => {
+    // Show loading when changing route
+    setIsLoading(true);
+
+    // Hide loading after a small delay
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 500);
+
+    return () => clearTimeout(timer);
+  }, [location.pathname]);
+
   return (
     <header className="app-header">
       <div className="header-content">

@@ -1,0 +1,32 @@
+.episode-detail-page {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 2rem;
+  display: flex;
+  gap: 2rem;
+}
+
+.episode-detail-main {
+  flex: 1;
+  min-width: 0;
+}
+
+.episode-detail-loading,
+.episode-detail-error {
+  text-align: center;
+  padding: 4rem 2rem;
+  font-size: 1.2rem;
+  color: #666;
+}
+
+.episode-detail-error {
+  color: #d32f2f;
+}
+
+@media (max-width: 768px) {
+  .episode-detail-page {
+    flex-direction: column;
+    padding: 1rem;
+    gap: 1rem;
+  }
+}

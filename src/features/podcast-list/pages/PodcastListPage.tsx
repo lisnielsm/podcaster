@@ -2,15 +2,16 @@ import React from "react";
 import { usePodcastList } from "../hooks/usePodcastList";
 import { diContainer } from "../../../config/di-container";
 import PodcastCard from "../components/PodcastCard";
-import "./PodcastListPage.css";
 import PodcastFilter from "../components/PodcastFilter";
+import LoadingSpinner from "../../../shared/components/ui/LoadingSpinner";
+import "./PodcastListPage.css";
 
 const PodcastListPage: React.FC = () => {
   const { podcasts, loading, error, filter, setFilter, filteredCount } =
     usePodcastList(diContainer.getTopPodcastsUseCase);
 
   if (loading) {
-    return <div className="podcast-list-loading">Loading podcasts...</div>;
+    return <LoadingSpinner />;
   }
 
   if (error) {
