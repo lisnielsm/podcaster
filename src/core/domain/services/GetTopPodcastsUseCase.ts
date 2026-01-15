@@ -22,12 +22,12 @@ export class GetTopPodcastsUseCase {
 
     // Check if the cache is valid (less than 1 day)
     if (cached && this.isCacheValid(cached.timestamp)) {
-      console.log("Using cached podcasts");
+      console.warn("Using cached podcasts");
       return cached.data;
     }
 
     // If there is no valid cache, get from the API
-    console.log("Fetching podcasts from API");
+    console.warn("Fetching podcasts from API");
     const podcasts = await this.podcastRepository.getTopPodcasts();
 
     // Save in cache

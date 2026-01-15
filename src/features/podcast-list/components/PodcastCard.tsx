@@ -11,7 +11,7 @@ const PodcastCard: React.FC<PodcastCardProps> = ({ podcast }) => {
   const navigate = useNavigate();
 
   const handleClick = () => {
-    navigate(`/podcast/${podcast.id}`);
+    void navigate(`/podcast/${podcast.id}`);
   };
 
   return (

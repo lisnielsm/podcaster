@@ -39,11 +39,29 @@ export default defineConfig([
       "no-var": "error",
     },
   },
+  // Relaxed rules for test files
+  {
+    files: [
+      "**/__tests__/**/*.ts",
+      "**/__tests__/**/*.tsx",
+      "**/*.test.ts",
+      "**/*.test.tsx",
+    ],
+    rules: {
+      "@typescript-eslint/no-empty-function": "off",
+      "@typescript-eslint/unbound-method": "off",
+      "@typescript-eslint/no-unsafe-assignment": "off",
+      "@typescript-eslint/dot-notation": "off",
+      "no-console": "off",
+    },
+  },
   {
     ignores: [
       "dist/**",
       "node_modules/**",
+      "coverage/**",
       "webpack.config.js",
+      "jest.config.js",
       "eslint.config.mjs",
     ],
   },
