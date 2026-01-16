@@ -5,13 +5,13 @@
   border-radius: 8px;
 }
 
-.episode-table {
+.episode-list__table {
   width: 100%;
   border-collapse: collapse;
   overflow: hidden;
 }
 
-.episode-table th {
+.episode-list__table th {
   padding: 1rem 1.5rem;
   text-align: left;
   font-weight: bold;
@@ -19,66 +19,76 @@
   border-bottom: 2px solid #e0e0e0;
 }
 
-.episode-table th:nth-child(2),
-.episode-table th:nth-child(3) {
+.episode-list__table th:nth-child(2),
+.episode-list__table th:nth-child(3) {
   width: 150px;
 }
 
-.episode-table th:nth-child(3) {
+.episode-list__table th:nth-child(3) {
   width: 100px;
 }
 
-.episode-row {
+.episode-list__row {
   cursor: pointer;
   transition: background-color 0.2s;
 }
 
-.episode-row:nth-child(odd) {
+.episode-list__row:nth-child(odd) {
   background-color: #f9f9f9;
 }
 
-.episode-row:hover {
+.episode-list__row:hover {
   background-color: #f9f9f9;
 }
 
-.episode-row td {
+.episode-list__row:focus {
+  outline: 2px solid #007bff;
+  outline-offset: -2px;
+}
+
+.episode-list__row:focus-visible {
+  outline: 2px solid #007bff;
+  outline-offset: -2px;
+}
+
+.episode-list__row td {
   padding: 1rem 1.5rem;
   border-bottom: 1px solid #e0e0e0;
 }
 
-.episode-row:last-child td {
+.episode-list__row:last-child td {
   border-bottom: none;
 }
 
-.episode-title {
+.episode-list__title {
   font-size: 0.95rem;
   color: #007bff;
   font-weight: 500;
 }
 
-.episode-date,
-.episode-duration {
+.episode-list__date,
+.episode-list__duration {
   font-size: 0.9rem;
   color: #666;
 }
 
 @media (max-width: 768px) {
-  .episode-table th,
-  .episode-row td {
+  .episode-list__table th,
+  .episode-list__row td {
     padding: 0.75rem 1rem;
     font-size: 0.85rem;
   }
 
-  .episode-table th:nth-child(2),
-  .episode-table th:nth-child(3) {
+  .episode-list__table th:nth-child(2),
+  .episode-list__table th:nth-child(3) {
     width: 100px;
   }
 
-  .episode-table th:nth-child(3) {
+  .episode-list__table th:nth-child(3) {
     width: 80px;
   }
 
-  .episode-title {
+  .episode-list__title {
     font-size: 0.85rem;
   }
 }

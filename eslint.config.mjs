@@ -1,11 +1,13 @@
 import { defineConfig } from "eslint/config";
 import eslint from "@eslint/js";
 import tseslint from "typescript-eslint";
+import jsxA11y from "eslint-plugin-jsx-a11y";
 
 export default defineConfig([
   eslint.configs.recommended,
   ...tseslint.configs.recommendedTypeChecked,
   ...tseslint.configs.stylisticTypeChecked,
+  jsxA11y.flatConfigs.recommended,
   {
     languageOptions: {
       parserOptions: {

@@ -1,4 +1,4 @@
-.app-header {
+.header {
   background-color: white;
   border-bottom: 1px solid #e0e0e0;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -7,7 +7,7 @@
   z-index: 1000;
 }
 
-.header-content {
+.header__content {
   max-width: 1400px;
   margin: 0 auto;
   padding: 1rem 2rem;
@@ -16,7 +16,7 @@
   align-items: center;
 }
 
-.header-title {
+.header__title {
   font-size: 1.5rem;
   font-weight: bold;
   color: #007bff;
@@ -24,11 +24,16 @@
   transition: color 0.3s;
 }
 
-.header-title:hover {
+.header__title:hover {
   color: #0056b3;
 }
 
-.loading-indicator {
+.header__title:focus {
+  outline: 2px solid #007bff;
+  outline-offset: 2px;
+}
+
+.header__loading-indicator {
   width: 16px;
   height: 16px;
   background-color: #5eb5f7;

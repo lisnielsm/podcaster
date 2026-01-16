@@ -17,7 +17,17 @@
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
 }
 
-.podcast-card-image-container {
+.podcast-card:focus {
+  outline: 2px solid #007bff;
+  outline-offset: 2px;
+}
+
+.podcast-card:focus-visible {
+  outline: 2px solid #007bff;
+  outline-offset: 2px;
+}
+
+.podcast-card__image-container {
   position: absolute;
   top: -30%;
   left: 50%;
@@ -28,18 +38,18 @@
   overflow: hidden;
 }
 
-.podcast-card-image {
+.podcast-card__image {
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
 
-.podcast-card-content {
+.podcast-card__content {
   padding-top: 90px;
   width: 100%;
 }
 
-.podcast-card-title {
+.podcast-card__title {
   font-size: 1rem;
   font-weight: bold;
   color: #333;
@@ -53,7 +63,7 @@
   -webkit-box-orient: vertical;
 }
 
-.podcast-card-artist {
+.podcast-card__artist {
   font-size: 0.875rem;
   color: #666;
   margin: 0;

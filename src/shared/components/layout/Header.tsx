@@ -19,12 +19,19 @@ const Header: React.FC = () => {
   }, [location.pathname]);
 
   return (
-    <header className="app-header">
-      <div className="header-content">
-        <Link to="/" className="header-title">
+    <header className="header">
+      <div className="header__content">
+        <Link to="/" className="header__title">
           Podcaster
         </Link>
-        {isLoading && <div className="loading-indicator"></div>}
+        {isLoading && (
+          <div
+            className="header__loading-indicator"
+            role="status"
+            aria-label="Loading"
+            aria-live="polite"
+          ></div>
+        )}
       </div>
     </header>
   );

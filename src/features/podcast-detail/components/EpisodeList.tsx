@@ -40,28 +40,39 @@ const EpisodeList: React.FC<EpisodeListProps> = ({ podcastId, episodes }) => {
     });
   };
 
+  const handleKeyDown = (event: React.KeyboardEvent, episodeId: number) => {
+    if (event.key === "Enter" || event.key === " ") {
+      event.preventDefault();
+      handleEpisodeClick(episodeId);
+    }
+  };
+
   return (
-    <section className="episode-list">
-      <table className="episode-table">
+    <section className="episode-list" aria-label="Episode list">
+      <table className="episode-list__table">
         <thead>
           <tr>
-            <th>Title</th>
-            <th>Release Date</th>
-            <th>Duration</th>
+            <th scope="col">Title</th>
+            <th scope="col">Release Date</th>
+            <th scope="col">Duration</th>
           </tr>
         </thead>
         <tbody>
           {episodes.map((episode) => (
             <tr
               key={episode.id}
-              className="episode-row"
+              className="episode-list__row"
               onClick={() => handleEpisodeClick(episode.id)}
+              onKeyDown={(e) => handleKeyDown(e, episode.id)}
+              tabIndex={0}
+              role="button"
+              aria-label={`Play episode: ${episode.title}, released ${formatDate(episode.releaseDate)}, duration ${formatDuration(episode.duration)}`}
             >
-              <td className="episode-title">{episode.title}</td>
-              <td className="episode-date">
+              <td className="episode-list__title">{episode.title}</td>
+              <td className="episode-list__date">
                 {formatDate(episode.releaseDate)}
               </td>
-              <td className="episode-duration">
+              <td className="episode-list__duration">
                 {formatDuration(episode.duration)}
               </td>
             </tr>

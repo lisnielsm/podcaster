@@ -3,7 +3,7 @@
   flex-shrink: 0;
 }
 
-.podcast-sidebar-card {
+.podcast-sidebar__card {
   background-color: white;
   border-radius: 8px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
@@ -12,20 +12,20 @@
   top: 80px;
 }
 
-.podcast-sidebar-image {
+.podcast-sidebar__image {
   width: 100%;
   border-radius: 8px;
   margin-bottom: 1rem;
   display: block;
 }
 
-.podcast-sidebar-content {
+.podcast-sidebar__content {
   border-top: 1px solid #e0e0e0;
   padding-top: 1rem;
   margin-bottom: 1rem;
 }
 
-.podcast-sidebar-title {
+.podcast-sidebar__title {
   font-size: 1.1rem;
   font-weight: bold;
   color: #333;
@@ -34,11 +34,16 @@
   margin-bottom: 0.5rem;
 }
 
-.podcast-sidebar-title:hover {
+.podcast-sidebar__title:hover {
   color: #007bff;
 }
 
-.podcast-sidebar-artist {
+.podcast-sidebar__title:focus {
+  outline: 2px solid #007bff;
+  outline-offset: 2px;
+}
+
+.podcast-sidebar__artist {
   font-size: 0.9rem;
   color: #666;
   font-style: italic;
@@ -47,23 +52,28 @@
   display: block;
 }
 
-.podcast-sidebar-artist:hover {
+.podcast-sidebar__artist:hover {
   color: #007bff;
 }
 
-.podcast-sidebar-description {
+.podcast-sidebar__artist:focus {
+  outline: 2px solid #007bff;
+  outline-offset: 2px;
+}
+
+.podcast-sidebar__description {
   border-top: 1px solid #e0e0e0;
   padding-top: 1rem;
 }
 
-.podcast-sidebar-description h3 {
+.podcast-sidebar__description h3 {
   font-size: 0.9rem;
   font-weight: bold;
   color: #333;
   margin: 0 0 0.5rem 0;
 }
 
-.podcast-sidebar-description p {
+.podcast-sidebar__description p {
   font-size: 0.85rem;
   color: #666;
   line-height: 1.5;
@@ -78,7 +88,7 @@
     margin-bottom: 2rem;
   }
 
-  .podcast-sidebar-card {
+  .podcast-sidebar__card {
     position: static;
   }
 }

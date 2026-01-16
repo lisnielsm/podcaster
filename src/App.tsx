@@ -11,7 +11,7 @@ const App: React.FC = () => {
     <Router>
       <div className="app">
         <Header />
-        <main className="app-main">
+        <main id="main-content" className="app__main" tabIndex={-1}>
           <Routes>
             <Route path="/" element={<PodcastListPage />} />
             <Route path="/podcast/:podcastId" element={<PodcastDetailPage />} />

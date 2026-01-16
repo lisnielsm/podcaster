@@ -5,18 +5,18 @@
   padding: 2rem;
 }
 
-.episode-player-header {
+.episode-player__header {
   margin-bottom: 1.5rem;
 }
 
-.episode-player-header h2 {
+.episode-player__header h2 {
   margin: 0;
   font-size: 1.5rem;
   color: #333;
   line-height: 1.4;
 }
 
-.episode-player-description {
+.episode-player__description {
   margin-bottom: 2rem;
   padding: 1.5rem;
   background-color: #f9f9f9;
@@ -25,45 +25,45 @@
   color: #666;
 }
 
-.episode-player-description p {
+.episode-player__description p {
   margin: 0 0 1rem 0;
 }
 
-.episode-player-description p:last-child {
+.episode-player__description p:last-child {
   margin-bottom: 0;
 }
 
-.episode-player-description a {
+.episode-player__description a {
   color: #007bff;
   text-decoration: none;
 }
 
-.episode-player-description a:hover {
+.episode-player__description a:hover {
   text-decoration: underline;
 }
 
-.episode-player-description ul,
-.episode-player-description ol {
+.episode-player__description ul,
+.episode-player__description ol {
   margin: 0.5rem 0;
   padding-left: 2rem;
 }
 
-.episode-player-description h1,
-.episode-player-description h2,
-.episode-player-description h3,
-.episode-player-description h4,
-.episode-player-description h5,
-.episode-player-description h6 {
+.episode-player__description h1,
+.episode-player__description h2,
+.episode-player__description h3,
+.episode-player__description h4,
+.episode-player__description h5,
+.episode-player__description h6 {
   margin: 1rem 0 0.5rem 0;
   color: #333;
 }
 
-.audio-player {
+.episode-player__audio {
   width: 100%;
   outline: none;
 }
 
-.episode-player-no-audio {
+.episode-player__no-audio {
   padding: 2rem;
   text-align: center;
   background-color: #f5f5f5;
@@ -71,7 +71,7 @@
   color: #999;
 }
 
-.episode-player-no-audio p {
+.episode-player__no-audio p {
   margin: 0;
   font-style: italic;
 }
@@ -81,11 +81,11 @@
     padding: 1.5rem;
   }
 
-  .episode-player-header h2 {
+  .episode-player__header h2 {
     font-size: 1.25rem;
   }
 
-  .episode-player-description {
+  .episode-player__description {
     padding: 1rem;
     font-size: 0.9rem;
   }

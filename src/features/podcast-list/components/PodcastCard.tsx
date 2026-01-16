@@ -14,20 +14,34 @@ const PodcastCard: React.FC<PodcastCardProps> = ({ podcast }) => {
     void navigate(`/podcast/${podcast.id}`);
   };
 
+  const handleKeyDown = (event: React.KeyboardEvent) => {
+    if (event.key === "Enter" || event.key === " ") {
+      event.preventDefault();
+      handleClick();
+    }
+  };
+
   return (
-    <div className="podcast-card" onClick={handleClick}>
-      <div className="podcast-card-image-container">
+    <article
+      className="podcast-card"
+      onClick={handleClick}
+      onKeyDown={handleKeyDown}
+      tabIndex={0}
+      role="button"
+      aria-label={`View podcast: ${podcast.name} by ${podcast.artist}`}
+    >
+      <div className="podcast-card__image-container">
         <img
           src={podcast.image}
           alt={podcast.name}
-          className="podcast-card-image"
+          className="podcast-card__image"
         />
       </div>
-      <div className="podcast-card-content">
-        <h3 className="podcast-card-title">{podcast.name}</h3>
-        <p className="podcast-card-artist">Author: {podcast.artist}</p>
+      <div className="podcast-card__content">
+        <h3 className="podcast-card__title">{podcast.name}</h3>
+        <p className="podcast-card__artist">Author: {podcast.artist}</p>
       </div>
-    </div>
+    </article>
   );
 };
 

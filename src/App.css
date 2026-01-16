@@ -19,7 +19,11 @@ body {
   flex-direction: column;
 }
 
-.app-main {
+.app__main {
   flex: 1;
   padding-top: 1rem;
+}
+
+.app__main:focus {
+  outline: none;
 }
