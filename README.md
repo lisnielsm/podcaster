@@ -17,6 +17,7 @@ A Single Page Application for discovering and listening to music podcasts, built
 - [Caching Strategy](#caching-strategy)
 - [API Integration](#api-integration)
 - [Linting & Code Quality](#linting--code-quality)
+- [Security](#security)
 - [Application Views](#application-views)
 - [Browser Support](#browser-support)
 - [Future Improvements](#future-improvements)
@@ -50,6 +51,7 @@ A Single Page Application for discovering and listening to music podcasts, built
 | Unit Testing    | Jest + React Testing Library              |
 | E2E Testing     | Cypress 13                                |
 | Linting         | ESLint with TypeScript + jsx-a11y support |
+| Security        | DOMPurify (XSS prevention)                |
 | CSS Methodology | BEM (Block Element Modifier)              |
 
 ---
@@ -1040,6 +1042,62 @@ The accessibility linter warns about:
 - Missing form labels
 - Invalid ARIA attributes
 - Incorrect ARIA roles
+
+---
+
+## Security
+
+### XSS Prevention with DOMPurify
+
+The application handles HTML content from external APIs (iTunes podcast descriptions) which could potentially contain malicious scripts. To prevent Cross-Site Scripting (XSS) attacks, we use **DOMPurify** for HTML sanitization.
+
+#### Implementation
+
+```typescript
+// EpisodePlayer.tsx
+import DOMPurify from "dompurify";
+
+const SANITIZE_CONFIG: DOMPurify.Config = {
+  ALLOWED_TAGS: ["p", "br", "strong", "em", "a", "ul", "ol", "li", "h1", "h2", "h3"],
+  ALLOWED_ATTR: ["href", "target", "rel", "class"],
+};
+
+const sanitizedDescription = DOMPurify.sanitize(description, SANITIZE_CONFIG);
+```
+
+#### What It Protects Against
+
+| Attack Type | Example | Protection |
+|-------------|---------|------------|
+| **Script Injection** | `<script>stealCookies()</script>` | Scripts are stripped |
+| **Event Handler XSS** | `<img onerror="malicious()">` | Event handlers removed |
+| **Data Theft** | `<a href="javascript:...">` | JavaScript URLs blocked |
+| **Phishing** | Fake login forms | Only safe tags allowed |
+
+#### Allowed HTML Elements
+
+The sanitizer only permits safe formatting tags:
+- Text: `<p>`, `<br>`, `<strong>`, `<b>`, `<em>`, `<i>`, `<u>`, `<span>`
+- Headings: `<h1>` through `<h6>`
+- Lists: `<ul>`, `<ol>`, `<li>`
+- Links: `<a>` (with `target="_blank"` and `rel="noopener noreferrer"` enforced)
+- Quotes: `<blockquote>`
+
+#### Link Security
+
+All links in sanitized content automatically receive security attributes:
+
+```html
+<!-- Before sanitization -->
+<a href="https://example.com">Link</a>
+
+<!-- After sanitization -->
+<a href="https://example.com" target="_blank" rel="noopener noreferrer">Link</a>
+```
+
+- `target="_blank"` - Opens in new tab (doesn't hijack current session)
+- `rel="noopener"` - Prevents `window.opener` access
+- `rel="noreferrer"` - Doesn't send referrer header
 
 ---
 
