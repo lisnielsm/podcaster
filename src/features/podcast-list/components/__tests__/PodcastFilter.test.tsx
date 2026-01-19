@@ -40,8 +40,12 @@ describe("PodcastFilter", () => {
       const { container } = render(<PodcastFilter {...defaultProps} />);
 
       expect(container.querySelector(".podcast-filter")).toBeInTheDocument();
-      expect(container.querySelector(".filter-badge")).toBeInTheDocument();
-      expect(container.querySelector(".filter-input")).toBeInTheDocument();
+      expect(
+        container.querySelector(".podcast-filter__badge")
+      ).toBeInTheDocument();
+      expect(
+        container.querySelector(".podcast-filter__input")
+      ).toBeInTheDocument();
     });
   });
 

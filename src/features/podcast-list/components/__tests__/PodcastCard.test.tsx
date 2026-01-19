@@ -2,7 +2,7 @@ import React from "react";
 import { render, screen, fireEvent } from "@testing-library/react";
 import { useNavigate } from "react-router-dom";
 import PodcastCard from "../PodcastCard";
-import { Podcast } from "../../../../core/domain/models/Podcast";
+import { Podcast } from "../../../../domain/models/Podcast";
 
 // Mock react-router-dom
 jest.mock("react-router-dom", () => ({

@@ -1,6 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import { Podcast } from "../../../core/domain/models/Podcast";
+import { Podcast } from "../../../domain/models/Podcast";
 import "./PodcastCard.css";
 
 interface PodcastCardProps {

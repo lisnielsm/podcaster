@@ -62,9 +62,11 @@ export default defineConfig([
       "dist/**",
       "node_modules/**",
       "coverage/**",
+      "cypress/**",
       "webpack.config.js",
       "jest.config.js",
       "eslint.config.mjs",
+      "cypress.config.ts",
     ],
   },
 ]);

@@ -36,7 +36,7 @@ describe("Header", () => {
     it("should render the header element", () => {
       render(<Header />);
 
-      expect(document.querySelector(".app-header")).toBeInTheDocument();
+      expect(document.querySelector(".header")).toBeInTheDocument();
     });
 
     it("should render the title link", () => {
@@ -52,17 +52,17 @@ describe("Header", () => {
       expect(link.closest("a")).toHaveAttribute("href", "/");
     });
 
-    it("should have header-content class", () => {
+    it("should have header__content class", () => {
       render(<Header />);
 
-      expect(document.querySelector(".header-content")).toBeInTheDocument();
+      expect(document.querySelector(".header__content")).toBeInTheDocument();
     });
 
-    it("should have header-title class on link", () => {
+    it("should have header__title class on link", () => {
       render(<Header />);
 
       const link = screen.getByText("Podcaster").closest("a");
-      expect(link).toHaveClass("header-title");
+      expect(link).toHaveClass("header__title");
     });
   });
 
@@ -70,20 +70,20 @@ describe("Header", () => {
     it("should show loading indicator initially on route change", () => {
       render(<Header />);
 
-      expect(document.querySelector(".loading-indicator")).toBeInTheDocument();
+      expect(document.querySelector(".header__loading-indicator")).toBeInTheDocument();
     });
 
     it("should hide loading indicator after 500ms", () => {
       render(<Header />);
 
-      expect(document.querySelector(".loading-indicator")).toBeInTheDocument();
+      expect(document.querySelector(".header__loading-indicator")).toBeInTheDocument();
 
       act(() => {
         jest.advanceTimersByTime(500);
       });
 
       expect(
-        document.querySelector(".loading-indicator")
+        document.querySelector(".header__loading-indicator")
       ).not.toBeInTheDocument();
     });
 
@@ -95,20 +95,20 @@ describe("Header", () => {
       });
 
       expect(
-        document.querySelector(".loading-indicator")
+        document.querySelector(".header__loading-indicator")
       ).not.toBeInTheDocument();
 
       // Simulate route change
       (useLocation as jest.Mock).mockReturnValue({ pathname: "/podcast/123" });
       rerender(<Header />);
 
-      expect(document.querySelector(".loading-indicator")).toBeInTheDocument();
+      expect(document.querySelector(".header__loading-indicator")).toBeInTheDocument();
     });
 
     it("should cleanup timeout on unmount", () => {
       const { unmount } = render(<Header />);
 
-      expect(document.querySelector(".loading-indicator")).toBeInTheDocument();
+      expect(document.querySelector(".header__loading-indicator")).toBeInTheDocument();
 
       unmount();
 

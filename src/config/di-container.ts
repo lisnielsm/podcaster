@@ -1,9 +1,9 @@
 import { PodcastApiAdapter } from "../infrastructure/api/PodcastApiAdapter";
 import { LocalStorageAdapter } from "../infrastructure/storage/LocalStorageAdapter";
 import { HttpClient } from "../infrastructure/http/HttpClient";
-import { GetTopPodcastsUseCase } from "../core/domain/services/GetTopPodcastsUseCase";
-import { GetPodcastDetailUseCase } from "../core/domain/services/GetPodcastDetailUseCase";
-import { GetEpisodeDetailUseCase } from "../core/domain/services/GetEpisodeDetailUseCase";
+import { GetTopPodcastsUseCase } from "../domain/services/GetTopPodcastsUseCase";
+import { GetPodcastDetailUseCase } from "../domain/services/GetPodcastDetailUseCase";
+import { GetEpisodeDetailUseCase } from "../domain/services/GetEpisodeDetailUseCase";
 
 // Create instances
 const httpClient = new HttpClient();

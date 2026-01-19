@@ -3,7 +3,7 @@ import { render, screen, fireEvent, waitFor } from "@testing-library/react";
 import { useParams, useNavigate } from "react-router-dom";
 import PodcastDetailPage from "../PodcastDetailPage";
 import { diContainer } from "../../../../config/di-container";
-import { PodcastDetail } from "../../../../core/domain/models/PodcastDetail";
+import { PodcastDetail } from "../../../../domain/models/PodcastDetail";
 
 // Mock react-router-dom
 jest.mock("react-router-dom", () => ({

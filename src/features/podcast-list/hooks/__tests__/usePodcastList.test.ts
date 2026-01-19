@@ -1,7 +1,7 @@
 import { renderHook, act, waitFor } from "@testing-library/react";
 import { usePodcastList } from "../usePodcastList";
-import { GetTopPodcastsUseCase } from "../../../../core/domain/services/GetTopPodcastsUseCase";
-import { Podcast } from "../../../../core/domain/models/Podcast";
+import { GetTopPodcastsUseCase } from "../../../../domain/services/GetTopPodcastsUseCase";
+import { Podcast } from "../../../../domain/models/Podcast";
 
 // Mock the use case
 const mockExecute = jest.fn();

@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
-import { Podcast } from "../../../core/domain/models/Podcast";
-import { GetTopPodcastsUseCase } from "../../../core/domain/services/GetTopPodcastsUseCase";
+import { Podcast } from "../../../domain/models/Podcast";
+import { GetTopPodcastsUseCase } from "../../../domain/services/GetTopPodcastsUseCase";
 
 export const usePodcastList = (
   getTopPodcastsUseCase: GetTopPodcastsUseCase

@@ -2,7 +2,7 @@ import React from "react";
 import { render, screen, fireEvent } from "@testing-library/react";
 import { useNavigate } from "react-router-dom";
 import EpisodeList from "../EpisodeList";
-import { Episode } from "../../../../core/domain/models/Episode";
+import { Episode } from "../../../../domain/models/Episode";
 
 // Mock react-router-dom
 jest.mock("react-router-dom", () => ({
@@ -70,17 +70,20 @@ describe("EpisodeList", () => {
     it("should render the correct number of rows", () => {
       render(<EpisodeList podcastId={mockPodcastId} episodes={mockEpisodes} />);
 
-      const rows = screen.getAllByRole("row");
-      // 1 header row + 3 data rows
-      expect(rows).toHaveLength(4);
+      // Header row has role="row", data rows have role="button" for accessibility
+      const headerRows = screen.getAllByRole("row");
+      const dataRows = screen.getAllByRole("button");
+      expect(headerRows).toHaveLength(1);
+      expect(dataRows).toHaveLength(3);
     });
 
     it("should render empty table when no episodes", () => {
       render(<EpisodeList podcastId={mockPodcastId} episodes={[]} />);
 
-      const rows = screen.getAllByRole("row");
-      // Only header row
-      expect(rows).toHaveLength(1);
+      const headerRows = screen.getAllByRole("row");
+      // Only header row, no button rows
+      expect(headerRows).toHaveLength(1);
+      expect(screen.queryAllByRole("button")).toHaveLength(0);
     });
   });
 
@@ -239,47 +242,51 @@ describe("EpisodeList", () => {
       expect(container.querySelector(".episode-list")).toBeInTheDocument();
     });
 
-    it("should have episode-table class on table", () => {
+    it("should have episode-list__table class on table", () => {
       const { container } = render(
         <EpisodeList podcastId={mockPodcastId} episodes={mockEpisodes} />
       );
 
-      expect(container.querySelector(".episode-table")).toBeInTheDocument();
+      expect(
+        container.querySelector(".episode-list__table")
+      ).toBeInTheDocument();
     });
 
-    it("should have episode-row class on data rows", () => {
+    it("should have episode-list__row class on data rows", () => {
       const { container } = render(
         <EpisodeList podcastId={mockPodcastId} episodes={mockEpisodes} />
       );
 
-      const episodeRows = container.querySelectorAll(".episode-row");
+      const episodeRows = container.querySelectorAll(".episode-list__row");
       expect(episodeRows).toHaveLength(3);
     });
 
-    it("should have episode-title class on title cells", () => {
+    it("should have episode-list__title class on title cells", () => {
       const { container } = render(
         <EpisodeList podcastId={mockPodcastId} episodes={mockEpisodes} />
       );
 
-      const titleCells = container.querySelectorAll(".episode-title");
+      const titleCells = container.querySelectorAll(".episode-list__title");
       expect(titleCells).toHaveLength(3);
     });
 
-    it("should have episode-date class on date cells", () => {
+    it("should have episode-list__date class on date cells", () => {
       const { container } = render(
         <EpisodeList podcastId={mockPodcastId} episodes={mockEpisodes} />
       );
 
-      const dateCells = container.querySelectorAll(".episode-date");
+      const dateCells = container.querySelectorAll(".episode-list__date");
       expect(dateCells).toHaveLength(3);
     });
 
-    it("should have episode-duration class on duration cells", () => {
+    it("should have episode-list__duration class on duration cells", () => {
       const { container } = render(
         <EpisodeList podcastId={mockPodcastId} episodes={mockEpisodes} />
       );
 
-      const durationCells = container.querySelectorAll(".episode-duration");
+      const durationCells = container.querySelectorAll(
+        ".episode-list__duration"
+      );
       expect(durationCells).toHaveLength(3);
     });
   });

@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
-import { Episode } from "../../../core/domain/models/Episode";
-import { PodcastDetail } from "../../../core/domain/models/PodcastDetail";
-import { GetEpisodeDetailUseCase } from "../../../core/domain/services/GetEpisodeDetailUseCase";
-import { GetPodcastDetailUseCase } from "../../../core/domain/services/GetPodcastDetailUseCase";
+import { Episode } from "../../../domain/models/Episode";
+import { PodcastDetail } from "../../../domain/models/PodcastDetail";
+import { GetEpisodeDetailUseCase } from "../../../domain/services/GetEpisodeDetailUseCase";
+import { GetPodcastDetailUseCase } from "../../../domain/services/GetPodcastDetailUseCase";
 
 export const useEpisodeDetail = (
   podcastId: string,

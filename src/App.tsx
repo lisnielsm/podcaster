@@ -1,6 +1,7 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Header from "./shared/components/layout/Header";
+import Footer from "./shared/components/layout/Footer";
 import PodcastListPage from "./features/podcast-list/pages/PodcastListPage";
 import "./App.css";
 import PodcastDetailPage from "./features/podcast-detail/pages/PodcastDetailPage";
@@ -21,6 +22,7 @@ const App: React.FC = () => {
             />
           </Routes>
         </main>
+        <Footer />
       </div>
     </Router>
   );

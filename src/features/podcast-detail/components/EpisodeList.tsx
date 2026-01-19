@@ -1,6 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import { Episode } from "../../../core/domain/models/Episode";
+import { Episode } from "../../../domain/models/Episode";
 import "./EpisodeList.css";
 
 interface EpisodeListProps {

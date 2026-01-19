@@ -3,8 +3,8 @@ import { render, screen, waitFor } from "@testing-library/react";
 import { useParams, useNavigate } from "react-router-dom";
 import EpisodeDetailPage from "../EpisodeDetailPage";
 import { diContainer } from "../../../../config/di-container";
-import { Episode } from "../../../../core/domain/models/Episode";
-import { PodcastDetail } from "../../../../core/domain/models/PodcastDetail";
+import { Episode } from "../../../../domain/models/Episode";
+import { PodcastDetail } from "../../../../domain/models/PodcastDetail";
 
 // Mock react-router-dom
 jest.mock("react-router-dom", () => ({

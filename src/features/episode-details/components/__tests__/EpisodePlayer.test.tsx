@@ -61,7 +61,7 @@ describe("EpisodePlayer", () => {
       render(<EpisodePlayer {...defaultProps} />);
 
       const descriptionElement = document.querySelector(
-        ".episode-player-description"
+        ".episode-player__description"
       );
       expect(descriptionElement).toBeInTheDocument();
       expect(descriptionElement?.innerHTML).toBe(
@@ -77,7 +77,7 @@ describe("EpisodePlayer", () => {
       );
 
       const descriptionElement = document.querySelector(
-        ".episode-player-description"
+        ".episode-player__description"
       );
       expect(descriptionElement?.querySelector("h3")).toBeInTheDocument();
       expect(descriptionElement?.querySelectorAll("li")).toHaveLength(2);
@@ -90,7 +90,7 @@ describe("EpisodePlayer", () => {
       );
 
       const descriptionElement = document.querySelector(
-        ".episode-player-description"
+        ".episode-player__description"
       );
       expect(descriptionElement).not.toBeInTheDocument();
     });
@@ -105,7 +105,7 @@ describe("EpisodePlayer", () => {
       );
 
       const descriptionElement = document.querySelector(
-        ".episode-player-description"
+        ".episode-player__description"
       );
       expect(descriptionElement).not.toBeInTheDocument();
     });
@@ -145,33 +145,35 @@ describe("EpisodePlayer", () => {
       expect(container.querySelector(".episode-player")).toBeInTheDocument();
     });
 
-    it("should have episode-player-header class on header", () => {
+    it("should have episode-player__header class on header", () => {
       const { container } = render(<EpisodePlayer {...defaultProps} />);
 
       expect(
-        container.querySelector(".episode-player-header")
+        container.querySelector(".episode-player__header")
       ).toBeInTheDocument();
     });
 
-    it("should have episode-player-description class on description", () => {
+    it("should have episode-player__description class on description", () => {
       const { container } = render(<EpisodePlayer {...defaultProps} />);
 
       expect(
-        container.querySelector(".episode-player-description")
+        container.querySelector(".episode-player__description")
       ).toBeInTheDocument();
     });
 
-    it("should have audio-player class on audio element", () => {
+    it("should have episode-player__audio class on audio element", () => {
       const { container } = render(<EpisodePlayer {...defaultProps} />);
 
-      expect(container.querySelector(".audio-player")).toBeInTheDocument();
+      expect(
+        container.querySelector(".episode-player__audio")
+      ).toBeInTheDocument();
     });
 
-    it("should have episode-player-no-audio class when no audio", () => {
+    it("should have episode-player__no-audio class when no audio", () => {
       const { container } = render(<EpisodePlayer title="Test" />);
 
       expect(
-        container.querySelector(".episode-player-no-audio")
+        container.querySelector(".episode-player__no-audio")
       ).toBeInTheDocument();
     });
   });
@@ -230,7 +232,7 @@ describe("EpisodePlayer", () => {
         screen.getByRole("heading", { name: "Just Title" })
       ).toBeInTheDocument();
       expect(
-        document.querySelector(".episode-player-description")
+        document.querySelector(".episode-player__description")
       ).not.toBeInTheDocument();
       expect(
         screen.getByText("No audio available for this episode")

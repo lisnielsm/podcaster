@@ -40,7 +40,7 @@ module.exports = {
     },
     host: "localhost",
     port: 4500,
-    open: true,
+    open: false,
     hot: true,
     liveReload: true,
     historyApiFallback: true,

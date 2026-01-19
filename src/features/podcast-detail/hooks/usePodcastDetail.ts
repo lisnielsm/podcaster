@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
-import { PodcastDetail } from "../../../core/domain/models/PodcastDetail";
-import { GetPodcastDetailUseCase } from "../../../core/domain/services/GetPodcastDetailUseCase";
+import { PodcastDetail } from "../../../domain/models/PodcastDetail";
+import { GetPodcastDetailUseCase } from "../../../domain/services/GetPodcastDetailUseCase";
 
 export const usePodcastDetail = (
   podcastId: string,

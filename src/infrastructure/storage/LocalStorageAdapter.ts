@@ -1,4 +1,4 @@
-import { IStorageRepository } from "../../core/domain/repositories/IStorageRepository";
+import { IStorageRepository } from "../../domain/repositories/IStorageRepository";
 
 export class LocalStorageAdapter implements IStorageRepository {
   get<T>(key: string): T | null {

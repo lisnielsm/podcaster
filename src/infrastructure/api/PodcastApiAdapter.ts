@@ -1,14 +1,14 @@
-import { IPodcastRepository } from "../../core/domain/repositories/IPodcastRepository";
-import { Podcast, PodcastEntity } from "../../core/domain/models/Podcast";
+import { IPodcastRepository } from "../../domain/repositories/IPodcastRepository";
+import { Podcast, PodcastEntity } from "../../domain/models/Podcast";
 import {
   ItunesPodcastDetailResponse,
   ItunesTopPodcastsResponse,
-} from "../../core/domain/models/ApiTypes";
+} from "../../domain/models/ApiTypes";
 import { HttpClient } from "../http/HttpClient";
 import {
   PodcastDetail,
   PodcastDetailEntity,
-} from "../../core/domain/models/PodcastDetail";
+} from "../../domain/models/PodcastDetail";
 
 export class PodcastApiAdapter implements IPodcastRepository {
   private httpClient: HttpClient;

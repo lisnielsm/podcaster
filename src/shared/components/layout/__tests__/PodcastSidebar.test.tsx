@@ -39,7 +39,7 @@ describe("PodcastSidebar", () => {
       render(<PodcastSidebar {...defaultProps} />);
 
       expect(
-        document.querySelector(".podcast-sidebar-card")
+        document.querySelector(".podcast-sidebar__card")
       ).toBeInTheDocument();
     });
 
@@ -98,40 +98,40 @@ describe("PodcastSidebar", () => {
   });
 
   describe("CSS Classes", () => {
-    it("should have podcast-sidebar-image class on image", () => {
+    it("should have podcast-sidebar__image class on image", () => {
       render(<PodcastSidebar {...defaultProps} />);
 
       const image = screen.getByRole("img");
-      expect(image).toHaveClass("podcast-sidebar-image");
+      expect(image).toHaveClass("podcast-sidebar__image");
     });
 
-    it("should have podcast-sidebar-title class on title link", () => {
+    it("should have podcast-sidebar__title class on title link", () => {
       render(<PodcastSidebar {...defaultProps} />);
 
       const titleLink = screen.getByText("Test Podcast").closest("a");
-      expect(titleLink).toHaveClass("podcast-sidebar-title");
+      expect(titleLink).toHaveClass("podcast-sidebar__title");
     });
 
-    it("should have podcast-sidebar-artist class on artist link", () => {
+    it("should have podcast-sidebar__artist class on artist link", () => {
       render(<PodcastSidebar {...defaultProps} />);
 
       const artistLink = screen.getByText("by Test Artist").closest("a");
-      expect(artistLink).toHaveClass("podcast-sidebar-artist");
+      expect(artistLink).toHaveClass("podcast-sidebar__artist");
     });
 
-    it("should have podcast-sidebar-content class", () => {
+    it("should have podcast-sidebar__content class", () => {
       render(<PodcastSidebar {...defaultProps} />);
 
       expect(
-        document.querySelector(".podcast-sidebar-content")
+        document.querySelector(".podcast-sidebar__content")
       ).toBeInTheDocument();
     });
 
-    it("should have podcast-sidebar-description class", () => {
+    it("should have podcast-sidebar__description class", () => {
       render(<PodcastSidebar {...defaultProps} />);
 
       expect(
-        document.querySelector(".podcast-sidebar-description")
+        document.querySelector(".podcast-sidebar__description")
       ).toBeInTheDocument();
     });
   });
@@ -149,7 +149,7 @@ describe("PodcastSidebar", () => {
 
       expect(screen.queryByText("Description:")).not.toBeInTheDocument();
       expect(
-        document.querySelector(".podcast-sidebar-description")
+        document.querySelector(".podcast-sidebar__description")
       ).not.toBeInTheDocument();
     });
 
