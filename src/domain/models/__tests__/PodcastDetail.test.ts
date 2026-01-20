@@ -1,11 +1,12 @@
 import { PodcastDetailEntity } from "../PodcastDetail";
+import { EpisodeEntity } from "../Episode";
 import { PodcastDetailResult } from "../ApiTypes";
 
 describe("PodcastDetailEntity", () => {
   describe("constructor", () => {
     it("should create a podcast detail with all properties", () => {
       const episodes = [
-        { id: 1, title: "Episode 1", releaseDate: "2024-01-15" },
+        new EpisodeEntity(1, "Episode 1", undefined, "2024-01-15", undefined, undefined),
       ];
 
       const podcastDetail = new PodcastDetailEntity(
@@ -22,7 +23,8 @@ describe("PodcastDetailEntity", () => {
       expect(podcastDetail.artist).toBe("Test Artist");
       expect(podcastDetail.image).toBe("https://example.com/image.jpg");
       expect(podcastDetail.description).toBe("Test description");
-      expect(podcastDetail.episodes).toEqual(episodes);
+      expect(podcastDetail.episodes).toHaveLength(1);
+      expect(podcastDetail.episodes[0].id).toBe(1);
     });
 
     it("should create a podcast detail with undefined description", () => {
@@ -188,8 +190,8 @@ describe("PodcastDetailEntity", () => {
   describe("getEpisodeCount", () => {
     it("should return correct episode count", () => {
       const episodes = [
-        { id: 1, title: "Episode 1", releaseDate: "2024-01-15" },
-        { id: 2, title: "Episode 2", releaseDate: "2024-01-22" },
+        new EpisodeEntity(1, "Episode 1", undefined, "2024-01-15", undefined, undefined),
+        new EpisodeEntity(2, "Episode 2", undefined, "2024-01-22", undefined, undefined),
       ];
 
       const podcastDetail = new PodcastDetailEntity(

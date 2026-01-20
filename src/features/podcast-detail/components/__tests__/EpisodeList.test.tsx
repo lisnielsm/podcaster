@@ -2,7 +2,7 @@ import React from "react";
 import { render, screen, fireEvent } from "@testing-library/react";
 import { useNavigate } from "react-router-dom";
 import EpisodeList from "../EpisodeList";
-import { Episode } from "../../../../domain/models/Episode";
+import { EpisodeEntity } from "../../../../domain/models/Episode";
 
 // Mock react-router-dom
 jest.mock("react-router-dom", () => ({
@@ -11,31 +11,31 @@ jest.mock("react-router-dom", () => ({
 
 describe("EpisodeList", () => {
   const mockNavigate = jest.fn();
-  const mockEpisodes: Episode[] = [
-    {
-      id: 101,
-      title: "Episode 1: Introduction",
-      description: "First episode",
-      releaseDate: "2024-01-15T00:00:00Z",
-      duration: 3661000, // 1:01:01
-      episodeUrl: "https://example.com/ep1.mp3",
-    },
-    {
-      id: 102,
-      title: "Episode 2: Deep Dive",
-      description: "Second episode",
-      releaseDate: "2024-01-22T00:00:00Z",
-      duration: 1830000, // 30:30
-      episodeUrl: "https://example.com/ep2.mp3",
-    },
-    {
-      id: 103,
-      title: "Episode 3: Conclusion",
-      description: "Third episode",
-      releaseDate: "2024-01-29T00:00:00Z",
-      duration: undefined,
-      episodeUrl: "https://example.com/ep3.mp3",
-    },
+  const mockEpisodes: EpisodeEntity[] = [
+    new EpisodeEntity(
+      101,
+      "Episode 1: Introduction",
+      "First episode",
+      "2024-01-15T00:00:00Z",
+      3661000, // 1:01:01
+      "https://example.com/ep1.mp3"
+    ),
+    new EpisodeEntity(
+      102,
+      "Episode 2: Deep Dive",
+      "Second episode",
+      "2024-01-22T00:00:00Z",
+      1830000, // 30:30
+      "https://example.com/ep2.mp3"
+    ),
+    new EpisodeEntity(
+      103,
+      "Episode 3: Conclusion",
+      "Third episode",
+      "2024-01-29T00:00:00Z",
+      undefined,
+      "https://example.com/ep3.mp3"
+    ),
   ];
   const mockPodcastId = 123;
 
@@ -109,13 +109,15 @@ describe("EpisodeList", () => {
     });
 
     it("should format short duration correctly", () => {
-      const episodesWithShortDuration: Episode[] = [
-        {
-          id: 104,
-          title: "Short Episode",
-          releaseDate: "2024-02-01T00:00:00Z",
-          duration: 65000, // 1:05
-        },
+      const episodesWithShortDuration: EpisodeEntity[] = [
+        new EpisodeEntity(
+          104,
+          "Short Episode",
+          undefined,
+          "2024-02-01T00:00:00Z",
+          65000, // 1:05
+          undefined
+        ),
       ];
 
       render(
@@ -129,13 +131,15 @@ describe("EpisodeList", () => {
     });
 
     it("should format duration with zero seconds correctly", () => {
-      const episodesWithZeroSeconds: Episode[] = [
-        {
-          id: 105,
-          title: "Zero Seconds Episode",
-          releaseDate: "2024-02-01T00:00:00Z",
-          duration: 3600000, // 1:00:00
-        },
+      const episodesWithZeroSeconds: EpisodeEntity[] = [
+        new EpisodeEntity(
+          105,
+          "Zero Seconds Episode",
+          undefined,
+          "2024-02-01T00:00:00Z",
+          3600000, // 1:00:00
+          undefined
+        ),
       ];
 
       render(
@@ -149,13 +153,15 @@ describe("EpisodeList", () => {
     });
 
     it("should handle zero duration", () => {
-      const episodesWithZeroDuration: Episode[] = [
-        {
-          id: 106,
-          title: "Zero Duration Episode",
-          releaseDate: "2024-02-01T00:00:00Z",
-          duration: 0,
-        },
+      const episodesWithZeroDuration: EpisodeEntity[] = [
+        new EpisodeEntity(
+          106,
+          "Zero Duration Episode",
+          undefined,
+          "2024-02-01T00:00:00Z",
+          0,
+          undefined
+        ),
       ];
 
       render(
@@ -165,7 +171,7 @@ describe("EpisodeList", () => {
         />
       );
 
-      // Zero is falsy so formatDuration returns "--:--"
+      // Zero is falsy so getDurationFormatted returns "--:--"
       expect(screen.getByText("--:--")).toBeInTheDocument();
     });
   });
@@ -181,13 +187,15 @@ describe("EpisodeList", () => {
     });
 
     it("should handle different date formats", () => {
-      const episodesWithDifferentDates: Episode[] = [
-        {
-          id: 107,
-          title: "December Episode",
-          releaseDate: "2024-12-15T12:00:00Z",
-          duration: 1000,
-        },
+      const episodesWithDifferentDates: EpisodeEntity[] = [
+        new EpisodeEntity(
+          107,
+          "December Episode",
+          undefined,
+          "2024-12-15T12:00:00Z",
+          1000,
+          undefined
+        ),
       ];
 
       render(
@@ -293,14 +301,15 @@ describe("EpisodeList", () => {
 
   describe("Edge Cases", () => {
     it("should handle episode with very long title", () => {
-      const longTitleEpisode: Episode[] = [
-        {
-          id: 108,
-          title:
-            "This is a very long episode title that might cause layout issues in certain scenarios",
-          releaseDate: "2024-02-01T00:00:00Z",
-          duration: 1000,
-        },
+      const longTitleEpisode: EpisodeEntity[] = [
+        new EpisodeEntity(
+          108,
+          "This is a very long episode title that might cause layout issues in certain scenarios",
+          undefined,
+          "2024-02-01T00:00:00Z",
+          1000,
+          undefined
+        ),
       ];
 
       render(
@@ -315,13 +324,15 @@ describe("EpisodeList", () => {
     });
 
     it("should handle episode with special characters in title", () => {
-      const specialCharsEpisode: Episode[] = [
-        {
-          id: 109,
-          title: "Episode <1> & More 'Special' \"Characters\"",
-          releaseDate: "2024-02-01T00:00:00Z",
-          duration: 1000,
-        },
+      const specialCharsEpisode: EpisodeEntity[] = [
+        new EpisodeEntity(
+          109,
+          "Episode <1> & More 'Special' \"Characters\"",
+          undefined,
+          "2024-02-01T00:00:00Z",
+          1000,
+          undefined
+        ),
       ];
 
       render(
@@ -337,12 +348,15 @@ describe("EpisodeList", () => {
     });
 
     it("should handle episode without description", () => {
-      const noDescriptionEpisode: Episode[] = [
-        {
-          id: 110,
-          title: "No Description Episode",
-          releaseDate: "2024-02-01T00:00:00Z",
-        },
+      const noDescriptionEpisode: EpisodeEntity[] = [
+        new EpisodeEntity(
+          110,
+          "No Description Episode",
+          undefined,
+          "2024-02-01T00:00:00Z",
+          undefined,
+          undefined
+        ),
       ];
 
       render(

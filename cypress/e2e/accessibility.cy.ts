@@ -98,9 +98,10 @@ describe("Accessibility", () => {
       cy.get("aside.podcast-sidebar", { timeout: 10000 }).should("exist");
     });
 
-    it("should use article element for podcast cards", () => {
+    it("should have podcast cards with button role", () => {
       cy.visit("/");
-      cy.get("article.podcast-card", { timeout: 10000 }).should("exist");
+      // Using div with role="button" instead of article for accessibility compliance
+      cy.get("div.podcast-card[role='button']", { timeout: 10000 }).should("exist");
     });
 
     it("should use section element for episode list", () => {

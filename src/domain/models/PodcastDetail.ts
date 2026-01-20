@@ -1,4 +1,4 @@
-import { Episode, EpisodeEntity } from "./Episode";
+import { EpisodeEntity } from "./Episode";
 import { PodcastDetailResult } from "./ApiTypes";
 
 export interface PodcastDetail {
@@ -7,7 +7,7 @@ export interface PodcastDetail {
   artist: string;
   image: string;
   description?: string;
-  episodes: Episode[];
+  episodes: EpisodeEntity[];
 }
 
 export class PodcastDetailEntity implements PodcastDetail {
@@ -17,7 +17,7 @@ export class PodcastDetailEntity implements PodcastDetail {
     public artist: string,
     public image: string,
     public description: string | undefined,
-    public episodes: Episode[]
+    public episodes: EpisodeEntity[]
   ) {}
 
   static fromApiResponse(results: PodcastDetailResult[]): PodcastDetailEntity {

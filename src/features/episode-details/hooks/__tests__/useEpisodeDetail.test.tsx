@@ -2,7 +2,7 @@ import { renderHook, waitFor } from "@testing-library/react";
 import { useEpisodeDetail } from "../useEpisodeDetail";
 import { GetEpisodeDetailUseCase } from "../../../../domain/services/GetEpisodeDetailUseCase";
 import { GetPodcastDetailUseCase } from "../../../../domain/services/GetPodcastDetailUseCase";
-import { Episode } from "../../../../domain/models/Episode";
+import { EpisodeEntity } from "../../../../domain/models/Episode";
 import { PodcastDetail } from "../../../../domain/models/PodcastDetail";
 
 // Mock the use cases
@@ -18,14 +18,14 @@ const mockPodcastUseCase = {
 } as unknown as GetPodcastDetailUseCase;
 
 describe("useEpisodeDetail", () => {
-  const mockEpisode: Episode = {
-    id: 101,
-    title: "Test Episode",
-    description: "This is a test episode",
-    releaseDate: "2024-01-15T00:00:00Z",
-    duration: 3600000,
-    episodeUrl: "https://example.com/episode.mp3",
-  };
+  const mockEpisode = new EpisodeEntity(
+    101,
+    "Test Episode",
+    "This is a test episode",
+    "2024-01-15T00:00:00Z",
+    3600000,
+    "https://example.com/episode.mp3"
+  );
 
   const mockPodcast: PodcastDetail = {
     id: 123,
@@ -308,11 +308,14 @@ describe("useEpisodeDetail", () => {
 
   describe("Episode Data Variations", () => {
     it("should handle episode without description", async () => {
-      const noDescEpisode: Episode = {
-        id: 102,
-        title: "No Description Episode",
-        releaseDate: "2024-01-15T00:00:00Z",
-      };
+      const noDescEpisode = new EpisodeEntity(
+        102,
+        "No Description Episode",
+        undefined,
+        "2024-01-15T00:00:00Z",
+        undefined,
+        undefined
+      );
       mockExecuteEpisode.mockResolvedValue(noDescEpisode);
 
       const { result } = renderHook(
@@ -326,12 +329,14 @@ describe("useEpisodeDetail", () => {
     });
 
     it("should handle episode without episodeUrl", async () => {
-      const noUrlEpisode: Episode = {
-        id: 103,
-        title: "No URL Episode",
-        releaseDate: "2024-01-15T00:00:00Z",
-        description: "Has description but no audio",
-      };
+      const noUrlEpisode = new EpisodeEntity(
+        103,
+        "No URL Episode",
+        "Has description but no audio",
+        "2024-01-15T00:00:00Z",
+        undefined,
+        undefined
+      );
       mockExecuteEpisode.mockResolvedValue(noUrlEpisode);
 
       const { result } = renderHook(
@@ -345,11 +350,14 @@ describe("useEpisodeDetail", () => {
     });
 
     it("should handle episode without duration", async () => {
-      const noDurationEpisode: Episode = {
-        id: 104,
-        title: "No Duration Episode",
-        releaseDate: "2024-01-15T00:00:00Z",
-      };
+      const noDurationEpisode = new EpisodeEntity(
+        104,
+        "No Duration Episode",
+        undefined,
+        "2024-01-15T00:00:00Z",
+        undefined,
+        undefined
+      );
       mockExecuteEpisode.mockResolvedValue(noDurationEpisode);
 
       const { result } = renderHook(

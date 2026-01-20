@@ -1,6 +1,7 @@
 import { IPodcastRepository } from "../repositories/IPodcastRepository";
 import { IStorageRepository } from "../repositories/IStorageRepository";
 import { PodcastDetail } from "../models/PodcastDetail";
+import { EpisodeEntity } from "../models/Episode";
 
 interface CachedPodcastDetail {
   data: PodcastDetail;
@@ -25,7 +26,8 @@ export class GetPodcastDetailUseCase {
     // Check if the cache is valid (less than 1 day)
     if (cached && this.isCacheValid(cached.timestamp)) {
       console.warn("Using cached podcast detail for:", podcastId);
-      return cached.data;
+      // Rehydrate episodes from plain objects to EpisodeEntity instances
+      return this.rehydratePodcastDetail(cached.data);
     }
 
     // If there is no valid cache, get from the API
@@ -46,5 +48,25 @@ export class GetPodcastDetailUseCase {
   private isCacheValid(timestamp: number): boolean {
     const now = Date.now();
     return now - timestamp < this.CACHE_DURATION;
+  }
+
+  private rehydratePodcastDetail(data: PodcastDetail): PodcastDetail {
+    // Convert plain episode objects back to EpisodeEntity instances
+    const episodes = data.episodes.map(
+      (ep) =>
+        new EpisodeEntity(
+          ep.id,
+          ep.title,
+          ep.description,
+          ep.releaseDate,
+          ep.duration,
+          ep.episodeUrl
+        )
+    );
+
+    return {
+      ...data,
+      episodes,
+    };
   }
 }

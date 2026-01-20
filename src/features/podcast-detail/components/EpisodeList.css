@@ -19,8 +19,7 @@
   border-bottom: 2px solid #e0e0e0;
 }
 
-.episode-list__table th:nth-child(2),
-.episode-list__table th:nth-child(3) {
+.episode-list__table th:nth-child(2) {
   width: 150px;
 }
 

@@ -2,6 +2,7 @@ import { renderHook, waitFor } from "@testing-library/react";
 import { usePodcastDetail } from "../usePodcastDetail";
 import { GetPodcastDetailUseCase } from "../../../../domain/services/GetPodcastDetailUseCase";
 import { PodcastDetail } from "../../../../domain/models/PodcastDetail";
+import { EpisodeEntity } from "../../../../domain/models/Episode";
 
 // Mock the use case
 const mockExecute = jest.fn();
@@ -17,18 +18,22 @@ describe("usePodcastDetail", () => {
     image: "https://example.com/image.jpg",
     description: "This is a test podcast description",
     episodes: [
-      {
-        id: 1,
-        title: "Episode 1",
-        releaseDate: "2024-01-15T00:00:00Z",
-        duration: 3600000,
-      },
-      {
-        id: 2,
-        title: "Episode 2",
-        releaseDate: "2024-01-22T00:00:00Z",
-        duration: 1800000,
-      },
+      new EpisodeEntity(
+        1,
+        "Episode 1",
+        undefined,
+        "2024-01-15T00:00:00Z",
+        3600000,
+        undefined
+      ),
+      new EpisodeEntity(
+        2,
+        "Episode 2",
+        undefined,
+        "2024-01-22T00:00:00Z",
+        1800000,
+        undefined
+      ),
     ],
   };
 
@@ -220,12 +225,18 @@ describe("usePodcastDetail", () => {
     });
 
     it("should handle podcast with many episodes", async () => {
-      const manyEpisodes = Array.from({ length: 100 }, (_, i) => ({
-        id: i + 1,
-        title: `Episode ${i + 1}`,
-        releaseDate: "2024-01-15T00:00:00Z",
-        duration: 3600000,
-      }));
+      const manyEpisodes = Array.from(
+        { length: 100 },
+        (_, i) =>
+          new EpisodeEntity(
+            i + 1,
+            `Episode ${i + 1}`,
+            undefined,
+            "2024-01-15T00:00:00Z",
+            3600000,
+            undefined
+          )
+      );
       const largePodcast: PodcastDetail = {
         ...mockPodcastDetail,
         episodes: manyEpisodes,

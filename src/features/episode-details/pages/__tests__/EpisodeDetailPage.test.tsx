@@ -3,7 +3,7 @@ import { render, screen, waitFor } from "@testing-library/react";
 import { useParams, useNavigate } from "react-router-dom";
 import EpisodeDetailPage from "../EpisodeDetailPage";
 import { diContainer } from "../../../../config/di-container";
-import { Episode } from "../../../../domain/models/Episode";
+import { EpisodeEntity } from "../../../../domain/models/Episode";
 import { PodcastDetail } from "../../../../domain/models/PodcastDetail";
 
 // Mock react-router-dom
@@ -89,14 +89,14 @@ jest.mock("../../components/EpisodePlayer", () => {
 
 describe("EpisodeDetailPage", () => {
   const mockNavigate = jest.fn();
-  const mockEpisode: Episode = {
-    id: 101,
-    title: "Test Episode Title",
-    description: "<p>Episode description with HTML</p>",
-    releaseDate: "2024-01-15T00:00:00Z",
-    duration: 3600000,
-    episodeUrl: "https://example.com/episode.mp3",
-  };
+  const mockEpisode = new EpisodeEntity(
+    101,
+    "Test Episode Title",
+    "<p>Episode description with HTML</p>",
+    "2024-01-15T00:00:00Z",
+    3600000,
+    "https://example.com/episode.mp3"
+  );
 
   const mockPodcast: PodcastDetail = {
     id: 123,
@@ -364,11 +364,14 @@ describe("EpisodeDetailPage", () => {
 
   describe("Episode Without Optional Fields", () => {
     it("should handle episode without description", async () => {
-      const noDescEpisode: Episode = {
-        id: 102,
-        title: "No Description Episode",
-        releaseDate: "2024-01-15T00:00:00Z",
-      };
+      const noDescEpisode = new EpisodeEntity(
+        102,
+        "No Description Episode",
+        undefined,
+        "2024-01-15T00:00:00Z",
+        undefined,
+        undefined
+      );
       (
         diContainer.getEpisodeDetailUseCase.execute as jest.Mock
       ).mockResolvedValue(noDescEpisode);
@@ -387,12 +390,14 @@ describe("EpisodeDetailPage", () => {
     });
 
     it("should handle episode without audio URL", async () => {
-      const noAudioEpisode: Episode = {
-        id: 103,
-        title: "No Audio Episode",
-        releaseDate: "2024-01-15T00:00:00Z",
-        description: "Has description",
-      };
+      const noAudioEpisode = new EpisodeEntity(
+        103,
+        "No Audio Episode",
+        "Has description",
+        "2024-01-15T00:00:00Z",
+        undefined,
+        undefined
+      );
       (
         diContainer.getEpisodeDetailUseCase.execute as jest.Mock
       ).mockResolvedValue(noAudioEpisode);

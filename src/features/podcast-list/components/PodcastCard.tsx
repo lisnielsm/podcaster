@@ -22,7 +22,7 @@ const PodcastCard: React.FC<PodcastCardProps> = ({ podcast }) => {
   };
 
   return (
-    <article
+    <div
       className="podcast-card"
       onClick={handleClick}
       onKeyDown={handleKeyDown}
@@ -41,7 +41,7 @@ const PodcastCard: React.FC<PodcastCardProps> = ({ podcast }) => {
         <h3 className="podcast-card__title">{podcast.name}</h3>
         <p className="podcast-card__artist">Author: {podcast.artist}</p>
       </div>
-    </article>
+    </div>
   );
 };
 

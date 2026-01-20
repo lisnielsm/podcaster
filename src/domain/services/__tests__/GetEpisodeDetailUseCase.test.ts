@@ -1,30 +1,30 @@
 import { GetEpisodeDetailUseCase } from "../GetEpisodeDetailUseCase";
 import { GetPodcastDetailUseCase } from "../GetPodcastDetailUseCase";
 import { PodcastDetail } from "../../models/PodcastDetail";
-import { Episode } from "../../models/Episode";
+import { EpisodeEntity } from "../../models/Episode";
 
 describe("GetEpisodeDetailUseCase", () => {
   let useCase: GetEpisodeDetailUseCase;
   let mockGetPodcastDetailUseCase: jest.Mocked<GetPodcastDetailUseCase>;
   let mockExecute: jest.Mock;
 
-  const mockEpisode1: Episode = {
-    id: 101,
-    title: "Episode 1",
-    description: "First episode",
-    releaseDate: "2024-01-15",
-    duration: 3600000,
-    episodeUrl: "https://example.com/ep1.mp3",
-  };
+  const mockEpisode1 = new EpisodeEntity(
+    101,
+    "Episode 1",
+    "First episode",
+    "2024-01-15",
+    3600000,
+    "https://example.com/ep1.mp3"
+  );
 
-  const mockEpisode2: Episode = {
-    id: 102,
-    title: "Episode 2",
-    description: "Second episode",
-    releaseDate: "2024-01-22",
-    duration: 1800000,
-    episodeUrl: "https://example.com/ep2.mp3",
-  };
+  const mockEpisode2 = new EpisodeEntity(
+    102,
+    "Episode 2",
+    "Second episode",
+    "2024-01-22",
+    1800000,
+    "https://example.com/ep2.mp3"
+  );
 
   const mockPodcastDetail: PodcastDetail = {
     id: 123,
@@ -115,11 +115,18 @@ describe("GetEpisodeDetailUseCase", () => {
     });
 
     it("should find correct episode among many", async () => {
-      const manyEpisodes: Episode[] = Array.from({ length: 20 }, (_, i) => ({
-        id: 100 + i,
-        title: `Episode ${i + 1}`,
-        releaseDate: "2024-01-15",
-      }));
+      const manyEpisodes: EpisodeEntity[] = Array.from(
+        { length: 20 },
+        (_, i) =>
+          new EpisodeEntity(
+            100 + i,
+            `Episode ${i + 1}`,
+            undefined,
+            "2024-01-15",
+            undefined,
+            undefined
+          )
+      );
       const largePodcast: PodcastDetail = {
         ...mockPodcastDetail,
         episodes: manyEpisodes,

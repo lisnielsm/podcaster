@@ -2,6 +2,7 @@ import { GetPodcastDetailUseCase } from "../GetPodcastDetailUseCase";
 import { IPodcastRepository } from "../../repositories/IPodcastRepository";
 import { IStorageRepository } from "../../repositories/IStorageRepository";
 import { PodcastDetail } from "../../models/PodcastDetail";
+import { EpisodeEntity } from "../../models/Episode";
 
 describe("GetPodcastDetailUseCase", () => {
   let useCase: GetPodcastDetailUseCase;
@@ -15,12 +16,7 @@ describe("GetPodcastDetailUseCase", () => {
     image: "image.jpg",
     description: "Test description",
     episodes: [
-      {
-        id: 1,
-        title: "Episode 1",
-        releaseDate: "2024-01-15",
-        duration: 3600000,
-      },
+      new EpisodeEntity(1, "Episode 1", undefined, "2024-01-15", 3600000, undefined),
     ],
   };
 

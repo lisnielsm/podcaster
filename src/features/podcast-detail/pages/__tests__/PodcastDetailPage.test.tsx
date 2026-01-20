@@ -4,6 +4,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import PodcastDetailPage from "../PodcastDetailPage";
 import { diContainer } from "../../../../config/di-container";
 import { PodcastDetail } from "../../../../domain/models/PodcastDetail";
+import { EpisodeEntity } from "../../../../domain/models/Episode";
 
 // Mock react-router-dom
 jest.mock("react-router-dom", () => ({
@@ -69,18 +70,22 @@ describe("PodcastDetailPage", () => {
     image: "https://example.com/tech.jpg",
     description: "A podcast about technology and innovation",
     episodes: [
-      {
-        id: 1,
-        title: "Episode 1: Getting Started",
-        releaseDate: "2024-01-15T00:00:00Z",
-        duration: 3600000,
-      },
-      {
-        id: 2,
-        title: "Episode 2: Going Deeper",
-        releaseDate: "2024-01-22T00:00:00Z",
-        duration: 1800000,
-      },
+      new EpisodeEntity(
+        1,
+        "Episode 1: Getting Started",
+        undefined,
+        "2024-01-15T00:00:00Z",
+        3600000,
+        undefined
+      ),
+      new EpisodeEntity(
+        2,
+        "Episode 2: Going Deeper",
+        undefined,
+        "2024-01-22T00:00:00Z",
+        1800000,
+        undefined
+      ),
     ],
   };
 
