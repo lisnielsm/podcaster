@@ -7,13 +7,13 @@ const Header: React.FC = () => {
   const location = useLocation();
 
   useEffect(() => {
-    // Show loading when changing route
+    // Show loading indicator when route changes
     setIsLoading(true);
 
-    // Hide loading after a small delay
+    // Hide after route transition completes
     const timer = setTimeout(() => {
       setIsLoading(false);
-    }, 500);
+    }, 300);
 
     return () => clearTimeout(timer);
   }, [location.pathname]);

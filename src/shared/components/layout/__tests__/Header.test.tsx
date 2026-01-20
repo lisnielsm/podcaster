@@ -70,16 +70,20 @@ describe("Header", () => {
     it("should show loading indicator initially on route change", () => {
       render(<Header />);
 
-      expect(document.querySelector(".header__loading-indicator")).toBeInTheDocument();
+      expect(
+        document.querySelector(".header__loading-indicator")
+      ).toBeInTheDocument();
     });
 
-    it("should hide loading indicator after 500ms", () => {
+    it("should hide loading indicator after 300ms", () => {
       render(<Header />);
 
-      expect(document.querySelector(".header__loading-indicator")).toBeInTheDocument();
+      expect(
+        document.querySelector(".header__loading-indicator")
+      ).toBeInTheDocument();
 
       act(() => {
-        jest.advanceTimersByTime(500);
+        jest.advanceTimersByTime(300);
       });
 
       expect(
@@ -91,7 +95,7 @@ describe("Header", () => {
       const { rerender } = render(<Header />);
 
       act(() => {
-        jest.advanceTimersByTime(500);
+        jest.advanceTimersByTime(300);
       });
 
       expect(
@@ -102,19 +106,32 @@ describe("Header", () => {
       (useLocation as jest.Mock).mockReturnValue({ pathname: "/podcast/123" });
       rerender(<Header />);
 
-      expect(document.querySelector(".header__loading-indicator")).toBeInTheDocument();
+      expect(
+        document.querySelector(".header__loading-indicator")
+      ).toBeInTheDocument();
+    });
+
+    it("should have correct accessibility attributes on loading indicator", () => {
+      render(<Header />);
+
+      const indicator = document.querySelector(".header__loading-indicator");
+      expect(indicator).toHaveAttribute("role", "status");
+      expect(indicator).toHaveAttribute("aria-label", "Loading");
+      expect(indicator).toHaveAttribute("aria-live", "polite");
     });
 
     it("should cleanup timeout on unmount", () => {
       const { unmount } = render(<Header />);
 
-      expect(document.querySelector(".header__loading-indicator")).toBeInTheDocument();
+      expect(
+        document.querySelector(".header__loading-indicator")
+      ).toBeInTheDocument();
 
       unmount();
 
       // Should not throw after advancing timers
       act(() => {
-        jest.advanceTimersByTime(500);
+        jest.advanceTimersByTime(300);
       });
     });
   });

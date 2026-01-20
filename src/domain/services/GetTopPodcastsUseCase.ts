@@ -9,7 +9,7 @@ interface CachedPodcasts {
 
 export class GetTopPodcastsUseCase {
   private readonly CACHE_KEY = "top_podcasts";
-  private readonly CACHE_DURATION = 24 * 60 * 60 * 1000; // 1 día en milisegundos
+  private readonly CACHE_DURATION = 24 * 60 * 60 * 1000; // 1 day in milliseconds
 
   constructor(
     private podcastRepository: IPodcastRepository,

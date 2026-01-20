@@ -30,6 +30,7 @@ jest.mock("../../../../shared/components/ui/LoadingSpinner", () => {
   };
 });
 
+
 // Mock PodcastSidebar
 jest.mock("../../../../shared/components/layout/PodcastSidebar", () => {
   return function MockPodcastSidebar({

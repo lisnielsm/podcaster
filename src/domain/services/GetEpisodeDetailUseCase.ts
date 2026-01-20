@@ -6,12 +6,12 @@ export class GetEpisodeDetailUseCase {
 
   async execute(podcastId: string, episodeId: string): Promise<Episode | null> {
     try {
-      // Obtener el detalle completo del podcast (que incluye todos los episodios)
+      // Obtain the complete podcast detail (that includes all episodes)
       const podcastDetail = await this.getPodcastDetailUseCase.execute(
         podcastId
       );
 
-      // Buscar el episodio específico
+      // Find the specific episode
       const episode = podcastDetail.episodes.find(
         (ep) => ep.id === parseInt(episodeId, 10)
       );

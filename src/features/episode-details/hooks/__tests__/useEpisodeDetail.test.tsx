@@ -44,32 +44,36 @@ describe("useEpisodeDetail", () => {
 
   describe("Initial State", () => {
     it("should start with loading true", () => {
-      const { result } = renderHook(() =>
-        useEpisodeDetail("123", "101", mockEpisodeUseCase, mockPodcastUseCase)
+      const { result } = renderHook(
+        () =>
+          useEpisodeDetail("123", "101", mockEpisodeUseCase, mockPodcastUseCase)
       );
 
       expect(result.current.loading).toBe(true);
     });
 
     it("should start with null episode", () => {
-      const { result } = renderHook(() =>
-        useEpisodeDetail("123", "101", mockEpisodeUseCase, mockPodcastUseCase)
+      const { result } = renderHook(
+        () =>
+          useEpisodeDetail("123", "101", mockEpisodeUseCase, mockPodcastUseCase)
       );
 
       expect(result.current.episode).toBeNull();
     });
 
     it("should start with null podcast", () => {
-      const { result } = renderHook(() =>
-        useEpisodeDetail("123", "101", mockEpisodeUseCase, mockPodcastUseCase)
+      const { result } = renderHook(
+        () =>
+          useEpisodeDetail("123", "101", mockEpisodeUseCase, mockPodcastUseCase)
       );
 
       expect(result.current.podcast).toBeNull();
     });
 
     it("should start with no error", () => {
-      const { result } = renderHook(() =>
-        useEpisodeDetail("123", "101", mockEpisodeUseCase, mockPodcastUseCase)
+      const { result } = renderHook(
+        () =>
+          useEpisodeDetail("123", "101", mockEpisodeUseCase, mockPodcastUseCase)
       );
 
       expect(result.current.error).toBeNull();
@@ -78,8 +82,9 @@ describe("useEpisodeDetail", () => {
 
   describe("Data Loading", () => {
     it("should call podcast use case with podcast ID", async () => {
-      renderHook(() =>
-        useEpisodeDetail("123", "101", mockEpisodeUseCase, mockPodcastUseCase)
+      renderHook(
+        () =>
+          useEpisodeDetail("123", "101", mockEpisodeUseCase, mockPodcastUseCase)
       );
 
       await waitFor(() => {
@@ -88,8 +93,9 @@ describe("useEpisodeDetail", () => {
     });
 
     it("should call episode use case with podcast and episode IDs", async () => {
-      renderHook(() =>
-        useEpisodeDetail("123", "101", mockEpisodeUseCase, mockPodcastUseCase)
+      renderHook(
+        () =>
+          useEpisodeDetail("123", "101", mockEpisodeUseCase, mockPodcastUseCase)
       );
 
       await waitFor(() => {
@@ -98,8 +104,9 @@ describe("useEpisodeDetail", () => {
     });
 
     it("should set loading to false after data loads", async () => {
-      const { result } = renderHook(() =>
-        useEpisodeDetail("123", "101", mockEpisodeUseCase, mockPodcastUseCase)
+      const { result } = renderHook(
+        () =>
+          useEpisodeDetail("123", "101", mockEpisodeUseCase, mockPodcastUseCase)
       );
 
       await waitFor(() => {
@@ -108,8 +115,9 @@ describe("useEpisodeDetail", () => {
     });
 
     it("should populate episode after loading", async () => {
-      const { result } = renderHook(() =>
-        useEpisodeDetail("123", "101", mockEpisodeUseCase, mockPodcastUseCase)
+      const { result } = renderHook(
+        () =>
+          useEpisodeDetail("123", "101", mockEpisodeUseCase, mockPodcastUseCase)
       );
 
       await waitFor(() => {
@@ -118,8 +126,9 @@ describe("useEpisodeDetail", () => {
     });
 
     it("should populate podcast after loading", async () => {
-      const { result } = renderHook(() =>
-        useEpisodeDetail("123", "101", mockEpisodeUseCase, mockPodcastUseCase)
+      const { result } = renderHook(
+        () =>
+          useEpisodeDetail("123", "101", mockEpisodeUseCase, mockPodcastUseCase)
       );
 
       await waitFor(() => {
@@ -180,8 +189,9 @@ describe("useEpisodeDetail", () => {
     it("should set error when episode is null", async () => {
       mockExecuteEpisode.mockResolvedValue(null);
 
-      const { result } = renderHook(() =>
-        useEpisodeDetail("123", "999", mockEpisodeUseCase, mockPodcastUseCase)
+      const { result } = renderHook(
+        () =>
+          useEpisodeDetail("123", "999", mockEpisodeUseCase, mockPodcastUseCase)
       );
 
       await waitFor(() => {
@@ -192,8 +202,9 @@ describe("useEpisodeDetail", () => {
     it("should set loading to false when episode is not found", async () => {
       mockExecuteEpisode.mockResolvedValue(null);
 
-      const { result } = renderHook(() =>
-        useEpisodeDetail("123", "999", mockEpisodeUseCase, mockPodcastUseCase)
+      const { result } = renderHook(
+        () =>
+          useEpisodeDetail("123", "999", mockEpisodeUseCase, mockPodcastUseCase)
       );
 
       await waitFor(() => {
@@ -204,8 +215,9 @@ describe("useEpisodeDetail", () => {
     it("should keep episode as null when not found", async () => {
       mockExecuteEpisode.mockResolvedValue(null);
 
-      const { result } = renderHook(() =>
-        useEpisodeDetail("123", "999", mockEpisodeUseCase, mockPodcastUseCase)
+      const { result } = renderHook(
+        () =>
+          useEpisodeDetail("123", "999", mockEpisodeUseCase, mockPodcastUseCase)
       );
 
       await waitFor(() => {
@@ -216,8 +228,9 @@ describe("useEpisodeDetail", () => {
     it("should still have podcast data when episode not found", async () => {
       mockExecuteEpisode.mockResolvedValue(null);
 
-      const { result } = renderHook(() =>
-        useEpisodeDetail("123", "999", mockEpisodeUseCase, mockPodcastUseCase)
+      const { result } = renderHook(
+        () =>
+          useEpisodeDetail("123", "999", mockEpisodeUseCase, mockPodcastUseCase)
       );
 
       await waitFor(() => {
@@ -230,8 +243,9 @@ describe("useEpisodeDetail", () => {
     it("should set error when podcast use case fails", async () => {
       mockExecutePodcast.mockRejectedValue(new Error("Podcast fetch failed"));
 
-      const { result } = renderHook(() =>
-        useEpisodeDetail("123", "101", mockEpisodeUseCase, mockPodcastUseCase)
+      const { result } = renderHook(
+        () =>
+          useEpisodeDetail("123", "101", mockEpisodeUseCase, mockPodcastUseCase)
       );
 
       await waitFor(() => {
@@ -242,8 +256,9 @@ describe("useEpisodeDetail", () => {
     it("should set error when episode use case fails", async () => {
       mockExecuteEpisode.mockRejectedValue(new Error("Episode fetch failed"));
 
-      const { result } = renderHook(() =>
-        useEpisodeDetail("123", "101", mockEpisodeUseCase, mockPodcastUseCase)
+      const { result } = renderHook(
+        () =>
+          useEpisodeDetail("123", "101", mockEpisodeUseCase, mockPodcastUseCase)
       );
 
       await waitFor(() => {
@@ -254,8 +269,9 @@ describe("useEpisodeDetail", () => {
     it("should set loading to false on error", async () => {
       mockExecutePodcast.mockRejectedValue(new Error("Network error"));
 
-      const { result } = renderHook(() =>
-        useEpisodeDetail("123", "101", mockEpisodeUseCase, mockPodcastUseCase)
+      const { result } = renderHook(
+        () =>
+          useEpisodeDetail("123", "101", mockEpisodeUseCase, mockPodcastUseCase)
       );
 
       await waitFor(() => {
@@ -266,8 +282,9 @@ describe("useEpisodeDetail", () => {
     it("should handle non-Error exceptions", async () => {
       mockExecutePodcast.mockRejectedValue("String error");
 
-      const { result } = renderHook(() =>
-        useEpisodeDetail("123", "101", mockEpisodeUseCase, mockPodcastUseCase)
+      const { result } = renderHook(
+        () =>
+          useEpisodeDetail("123", "101", mockEpisodeUseCase, mockPodcastUseCase)
       );
 
       await waitFor(() => {
@@ -278,8 +295,9 @@ describe("useEpisodeDetail", () => {
     it("should handle null rejection", async () => {
       mockExecuteEpisode.mockRejectedValue(null);
 
-      const { result } = renderHook(() =>
-        useEpisodeDetail("123", "101", mockEpisodeUseCase, mockPodcastUseCase)
+      const { result } = renderHook(
+        () =>
+          useEpisodeDetail("123", "101", mockEpisodeUseCase, mockPodcastUseCase)
       );
 
       await waitFor(() => {
@@ -297,8 +315,9 @@ describe("useEpisodeDetail", () => {
       };
       mockExecuteEpisode.mockResolvedValue(noDescEpisode);
 
-      const { result } = renderHook(() =>
-        useEpisodeDetail("123", "102", mockEpisodeUseCase, mockPodcastUseCase)
+      const { result } = renderHook(
+        () =>
+          useEpisodeDetail("123", "102", mockEpisodeUseCase, mockPodcastUseCase)
       );
 
       await waitFor(() => {
@@ -315,8 +334,9 @@ describe("useEpisodeDetail", () => {
       };
       mockExecuteEpisode.mockResolvedValue(noUrlEpisode);
 
-      const { result } = renderHook(() =>
-        useEpisodeDetail("123", "103", mockEpisodeUseCase, mockPodcastUseCase)
+      const { result } = renderHook(
+        () =>
+          useEpisodeDetail("123", "103", mockEpisodeUseCase, mockPodcastUseCase)
       );
 
       await waitFor(() => {
@@ -332,8 +352,9 @@ describe("useEpisodeDetail", () => {
       };
       mockExecuteEpisode.mockResolvedValue(noDurationEpisode);
 
-      const { result } = renderHook(() =>
-        useEpisodeDetail("123", "104", mockEpisodeUseCase, mockPodcastUseCase)
+      const { result } = renderHook(
+        () =>
+          useEpisodeDetail("123", "104", mockEpisodeUseCase, mockPodcastUseCase)
       );
 
       await waitFor(() => {

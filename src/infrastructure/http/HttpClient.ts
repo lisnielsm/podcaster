@@ -6,11 +6,7 @@ export class HttpClient {
   ];
   private currentProxyIndex = 0;
 
-  async get<T>(url: string, useCorsProxy = true): Promise<T> {
-    if (!useCorsProxy) {
-      return this.fetchDirect<T>(url);
-    }
-
+  async get<T>(url: string): Promise<T> {
     // Try with each proxy until one works
     for (let i = 0; i < this.corsProxies.length; i++) {
       try {
@@ -43,49 +39,5 @@ export class HttpClient {
 
     // If all proxies fail, throw error
     throw new Error("All CORS proxies failed");
-  }
-
-  private async fetchDirect<T>(url: string): Promise<T> {
-    const response = await fetch(url);
-
-    if (!response.ok) {
-      throw new Error(`HTTP error! status: ${response.status}`);
-    }
-
-    const data = (await response.json()) as T;
-    return data;
-  }
-
-  async post<T, B = unknown>(
-    url: string,
-    body: B,
-    useCorsProxy = true
-  ): Promise<T> {
-    try {
-      const finalUrl = useCorsProxy
-        ? `${this.corsProxies[this.currentProxyIndex]}${encodeURIComponent(
-            url
-          )}`
-        : url;
-
-      const response = await fetch(finalUrl, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(body),
-      });
-
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
-      }
-
-      const data = (await response.json()) as T;
-
-      return data;
-    } catch (error) {
-      console.error("HttpClient error:", error);
-      throw error;
-    }
   }
 }

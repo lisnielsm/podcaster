@@ -23,11 +23,11 @@ export const useEpisodeDetail = (
     setLoading(true);
     setError(null);
     try {
-      // Cargar el podcast completo para obtener información del sidebar
+      // Load the full podcast to get sidebar information
       const podcastData = await getPodcastDetailUseCase.execute(podcastId);
       setPodcast(podcastData);
 
-      // Cargar el episodio específico
+      // Load the specific episode
       const episodeData = await getEpisodeDetailUseCase.execute(
         podcastId,
         episodeId

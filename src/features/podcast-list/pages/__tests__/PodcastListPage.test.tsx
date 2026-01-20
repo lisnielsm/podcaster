@@ -26,6 +26,7 @@ jest.mock("../../../../shared/components/ui/LoadingSpinner", () => {
   };
 });
 
+
 describe("PodcastListPage", () => {
   const mockNavigate = jest.fn();
   const mockPodcasts: Podcast[] = [
